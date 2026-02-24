@@ -33,10 +33,18 @@ const Navbar = () => {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.getElementById(href.replace("#", ""));
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    setTimeout(() => {
+      const el = document.getElementById(href.replace("#", ""));
+      if (el) {
+        const offset = 80;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, 300);
   };
 
   return (

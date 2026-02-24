@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import AnimatedTechBackground from "@/components/AnimatedTechBackground";
 
 const technologies = [
   { name: "React", category: "Frontend" },
@@ -27,6 +28,7 @@ const categoryColors: Record<string, string> = {
 const TechSection = () => {
   return (
     <section id="skills" className="relative px-6 py-28 overflow-hidden">
+      <AnimatedTechBackground variant="particles" opacity={0.25} />
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-primary/4 blur-[120px]" />
 
       <div className="relative z-10 max-w-4xl mx-auto">

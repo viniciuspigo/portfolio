@@ -1,6 +1,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { TrendingUp, Brush, DollarSign } from "lucide-react";
+import AnimatedTechBackground from "@/components/AnimatedTechBackground";
 
 const timelineItems = [
   {
@@ -60,6 +61,7 @@ const TimelineSection = () => {
 
   return (
     <section id="timeline" className="relative px-6 py-28 overflow-hidden">
+      <AnimatedTechBackground variant="particles" opacity={0.25} />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="relative z-10 max-w-5xl mx-auto">

@@ -9,6 +9,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import AnimatedTechBackground from "@/components/AnimatedTechBackground";
 import agendamentoThumbnail from "@/assets/Agendamento.png";
 import reembolsoThumbnail from "@/assets/reembolso.png";
 
@@ -29,15 +32,62 @@ const projects = [
     ],
     github: "https://github.com",
     demo: "https://agendamentos.luananaildesign.com.br/",
+    details: {
+      sections: [
+        {
+          title: "Planejamento e Prototipação",
+          content:
+            "Realizei o planejamento inicial do sistema e desenvolvi protótipos e modelos base no Figma, definindo a estrutura visual, fluxo de navegação e experiência do usuário, servindo como referência para o desenvolvimento da aplicação.",
+        },
+        {
+          title: "Desenvolvimento Full Stack",
+          content:
+            "Desenvolvi uma aplicação web completa utilizando React e Tailwind CSS no front-end, criando interfaces modernas, responsivas e de fácil utilização. No back-end, utilizei Node.js com Express para construção de APIs REST responsáveis pela lógica de negócio, gerenciamento de agendamentos, usuários e serviços.",
+        },
+        {
+          title: "Arquitetura e Organização do Back-end",
+          content:
+            "Estruturei o back-end seguindo o padrão de arquitetura MVC, organizando a aplicação em Controllers, Services, Models e Routes, garantindo separação de responsabilidades, melhor organização do código e maior facilidade de manutenção e escalabilidade.",
+        },
+        {
+          title: "Modelagem e Gerenciamento de Banco de Dados",
+          content:
+            "Projetei e implementei o banco de dados utilizando PostgreSQL via Supabase, criando estruturas relacionais e queries otimizadas para armazenamento e gerenciamento eficiente das informações da aplicação.",
+        },
+        {
+          title: "Configuração de Infraestrutura, Deploy e Segurança",
+          content:
+            "Configurei e gerenciei uma VPS na Oracle Cloud para hospedagem da aplicação, implementando pipeline de CI/CD com Dokploy para automação de deploy. Também configurei uma VPN utilizando WireGuard para acesso seguro à infraestrutura e maior proteção do ambiente.",
+        },
+      ],
+      video: {
+        url: "https://www.w3schools.com/html/mov_bbb.mp4",
+        title: "Demonstração do Sistema de Agendamentos",
+      },
+    },
   },
   {
     name: "Reembolso – Projeto Acadêmico",
     description:
       "Sistema de Reembolso simples e funcional, focado em organização e controle de solicitações.",
     thumbnail: reembolsoThumbnail,
-    stack: ["HTML", "CSS", "JavaScript", "MySQL"],
+    stack: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MySQL"],
     github: "https://github.com/viniciuspigo/reembolso_project",
     demo: "https://demo.com",
+    details: {
+      sections: [
+        {
+          title: "Desenvolvimento Front-end",
+          content:
+            "Desenvolvi a interface da aplicação utilizando HTML, CSS e JavaScript puro, criando páginas responsivas e funcionais para cadastro, listagem e gerenciamento de solicitações de reembolso. O foco foi em criar uma experiência de usuário simples e intuitiva.",
+        },
+        {
+          title: "Desenvolvimento Back-end",
+          content:
+            "Implementei o back-end utilizando Node.js com Express.js para criação de APIs REST que gerenciam as operações de reembolso. O banco de dados MySQL foi utilizado para armazenamento das informações de solicitações, usuários e aprovações, garantindo persistência e integridade dos dados.",
+        },
+      ],
+    },
   },
 ];
 
@@ -65,7 +115,7 @@ const ProjectCard = ({
         <motion.img
           src={project.thumbnail}
           alt={project.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover brightness-[0.4] saturate-50 group-hover:brightness-100 group-hover:saturate-100 transition-all duration-500"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.4 }}
         />
@@ -126,10 +176,11 @@ const ProjectCard = ({
         )}
         <button
           onClick={onDetails}
-          className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-primary-foreground bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+          className="ml-auto inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-semibold text-primary-foreground bg-gradient-to-r from-primary via-primary/90 to-accent hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 ring-1 ring-primary/20 hover:ring-primary/40"
         >
-          <Eye className="w-3.5 h-3.5" />
-          Detalhes
+          <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="hidden xs:inline">Ver Detalhes</span>
+          <span className="xs:hidden">Detalhes</span>
         </button>
       </div>
     </div>
@@ -141,6 +192,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="relative px-6 py-28 overflow-hidden">
+      <AnimatedTechBackground variant="particles" opacity={0.25} />
       <div className="absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-accent/3 blur-[140px]" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -171,12 +223,12 @@ const ProjectsSection = () => {
       </div>
 
       {/* Project Details Dialog */}
-      {/* <Dialog
+      <Dialog
         open={!!selectedProject}
         onOpenChange={() => setSelectedProject(null)}
       >
-        <DialogContent className="max-w-lg bg-card border-border/60 rounded-2xl">
-          <DialogHeader>
+        <DialogContent className="max-w-3xl max-h-[85vh] bg-card border-border/60 rounded-2xl p-0 overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-4">
             <DialogTitle className="text-xl font-bold text-gradient">
               {selectedProject?.name}
             </DialogTitle>
@@ -186,50 +238,52 @@ const ProjectsSection = () => {
           </DialogHeader>
 
           {selectedProject?.details && (
-            <div className="space-y-5 mt-2">
-              <div>
-                <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-1.5">
-                  Desafio
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {selectedProject.details.challenge}
-                </p>
+            <ScrollArea className="h-[calc(85vh-120px)] px-6 pb-6">
+              <div className="space-y-6">
+                {/* Video Section (Optional) */}
+                {selectedProject.details.video && (
+                  <>
+                    <Separator className="my-6" />
+                    <div>
+                      <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-3">
+                        {selectedProject.details.video.title}
+                      </h4>
+                      <AspectRatio
+                        ratio={16 / 9}
+                        className="bg-muted rounded-lg overflow-hidden"
+                      >
+                        <video
+                          src={selectedProject.details.video.url}
+                          controls
+                          preload="metadata"
+                          className="w-full h-full object-cover"
+                        >
+                          Seu navegador não suporta a tag de vídeo.
+                        </video>
+                      </AspectRatio>
+                    </div>
+                  </>
+                )}
+
+                {/* Project Sections */}
+                {selectedProject.details.sections.map((section, index) => (
+                  <div key={index}>
+                    {index > 0 && <Separator className="mb-6" />}
+                    <div>
+                      <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-2">
+                        {section.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {section.content}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div>
-                <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-1.5">
-                  Solução
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {selectedProject.details.solution}
-                </p>
-              </div>
-              <div>
-                <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-2">
-                  Features
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedProject.details.features.map((f) => (
-                    <span
-                      key={f}
-                      className="text-[11px] px-2.5 py-1 rounded-md bg-primary/10 text-primary/80 font-mono border border-primary/15"
-                    >
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center gap-2 pt-3 border-t border-border/30">
-                <span className="text-xs text-muted-foreground">
-                  ⏱ Duração:{" "}
-                  <span className="text-accent font-semibold">
-                    {selectedProject.details.duration}
-                  </span>
-                </span>
-              </div>
-            </div>
+            </ScrollArea>
           )}
         </DialogContent>
-      </Dialog> */}
+      </Dialog>
     </section>
   );
 };

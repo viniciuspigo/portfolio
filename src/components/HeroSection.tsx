@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import profilePhoto from "@/assets/Vinicius_Piras.jfif";
-import { Linkedin, MessageCircle, ChevronDown } from "lucide-react";
+import { Linkedin, ChevronDown } from "lucide-react";
 import { MdWhatsapp } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
 
 const HeroSection = () => {
   return (
@@ -80,6 +81,15 @@ const HeroSection = () => {
             >
               <Linkedin className="w-4 h-4" />
               LinkedIn
+            </a>
+            <a
+              href="https://www.linkedin.com/in/viniciuspiras/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn relative inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-gradient card-glass text-foreground hover:text-primary transition-colors text-sm font-medium"
+            >
+              <FaGithub className="w-4 h-4" />
+              Github
             </a>
             <a
               href="https://wa.me/5511916625986"
