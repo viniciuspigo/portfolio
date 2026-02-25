@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import logoWhite from "@/assets/vp_logo_branca_semfundo.png";
 
 const navItems = [
   { label: "Início", href: "#hero" },
@@ -62,9 +63,13 @@ const Navbar = () => {
         {/* Logo */}
         <button
           onClick={() => handleClick("#hero")}
-          className="text-lg font-bold tracking-tight"
+          className="flex items-center"
         >
-          <span className="text-gradient">Vinicius Piras</span>
+          <img
+            src={logoWhite}
+            alt="Vinicius Piras"
+            className="h-16 w-auto transition-opacity hover:opacity-80"
+          />
         </button>
 
         {/* Desktop links */}

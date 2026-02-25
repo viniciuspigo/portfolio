@@ -11,6 +11,7 @@ import {
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 import AnimatedTechBackground from "@/components/AnimatedTechBackground";
 import agendamentoThumbnail from "@/assets/Agendamento.png";
 import reembolsoThumbnail from "@/assets/reembolso.png";
@@ -18,6 +19,7 @@ import reembolsoThumbnail from "@/assets/reembolso.png";
 const projects = [
   {
     name: "Luana Nail Design – Agendamentos",
+    type: "real" as const,
     description:
       "Sistema de agendamento de serviços de unhas, com controle de horários, cadastro de clientes e painel administrativo para gerenciamento de atendimentos.",
     thumbnail: agendamentoThumbnail,
@@ -30,7 +32,7 @@ const projects = [
       "Docker",
       "Oracle Cloud",
     ],
-    github: "https://github.com",
+    /* github: "https://github.com", */
     demo: "https://agendamentos.luananaildesign.com.br/",
     details: {
       sections: [
@@ -68,12 +70,13 @@ const projects = [
   },
   {
     name: "Reembolso – Projeto Acadêmico",
+    type: "academic" as const,
     description:
       "Sistema de Reembolso simples e funcional, focado em organização e controle de solicitações.",
     thumbnail: reembolsoThumbnail,
     stack: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MySQL"],
     github: "https://github.com/viniciuspigo/reembolso_project",
-    demo: "https://demo.com",
+    demo: "https://reembolso.pirasdev.com",
     details: {
       sections: [
         {
@@ -92,6 +95,19 @@ const projects = [
 ];
 
 type Project = (typeof projects)[number];
+
+const getProjectTypeBadge = (type: "real" | "academic") => {
+  if (type === "real") {
+    return {
+      text: "Projeto Real",
+      variant: "default" as const,
+    };
+  }
+  return {
+    text: "Projeto Acadêmico",
+    variant: "secondary" as const,
+  };
+};
 
 const ProjectCard = ({
   project,
@@ -128,9 +144,17 @@ const ProjectCard = ({
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <Folder className="w-5 h-5 text-primary/40" />
-        <span className="text-[10px] font-mono text-muted-foreground/40">
-          #{String(index + 1).padStart(2, "0")}
-        </span>
+        <div className="flex items-center gap-2">
+          <Badge
+            variant={getProjectTypeBadge(project.type).variant}
+            className="text-[10px] font-semibold px-2 py-0.5"
+          >
+            {getProjectTypeBadge(project.type).text}
+          </Badge>
+          <span className="text-[10px] font-mono text-muted-foreground/40">
+            #{String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
       </div>
 
       <h3 className="text-lg font-bold group-hover:text-primary transition-colors duration-300">
@@ -154,15 +178,17 @@ const ProjectCard = ({
 
       {/* Actions */}
       <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border/30">
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground bg-muted/50 border border-border/50 hover:text-foreground hover:border-primary/30 hover:bg-primary/5 transition-all"
-        >
-          <Github className="w-3.5 h-3.5" />
-          Código
-        </a>
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground bg-muted/50 border border-border/50 hover:text-foreground hover:border-primary/30 hover:bg-primary/5 transition-all"
+          >
+            <Github className="w-3.5 h-3.5" />
+            Código
+          </a>
+        )}
         {project.demo && (
           <a
             href={project.demo}
@@ -243,7 +269,6 @@ const ProjectsSection = () => {
                 {/* Video Section (Optional) */}
                 {selectedProject.details.video && (
                   <>
-                    <Separator className="my-6" />
                     <div>
                       <h4 className="text-xs font-mono text-primary/70 uppercase tracking-wider mb-3">
                         {selectedProject.details.video.title}
