@@ -12,7 +12,7 @@ COPY package*.json ./
 RUN npm install -g npm@latest
 
 # Instala dependências
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Copia o resto do projeto
 COPY . .
