@@ -83,7 +83,7 @@ const HeroSection = () => {
               LinkedIn
             </a>
             <a
-              href="https://www.linkedin.com/in/viniciuspiras/"
+              href="https://github.com/viniciuspigo"
               target="_blank"
               rel="noopener noreferrer"
               className="group/btn relative inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-gradient card-glass text-foreground hover:text-primary transition-colors text-sm font-medium"

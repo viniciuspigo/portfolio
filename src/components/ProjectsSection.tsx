@@ -192,7 +192,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="relative px-6 py-28 overflow-hidden">
-      <AnimatedTechBackground variant="particles" opacity={0.25} />
+      <AnimatedTechBackground variant="particles" opacity={0.05} />
       <div className="absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-accent/3 blur-[140px]" />
 
       <div className="relative z-10 max-w-5xl mx-auto">

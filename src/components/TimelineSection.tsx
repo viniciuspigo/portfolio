@@ -61,7 +61,7 @@ const TimelineSection = () => {
 
   return (
     <section id="timeline" className="relative px-6 py-28 overflow-hidden">
-      <AnimatedTechBackground variant="particles" opacity={0.25} />
+      <AnimatedTechBackground variant="particles" opacity={0.05} />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
