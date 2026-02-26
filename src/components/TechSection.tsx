@@ -13,7 +13,10 @@ const technologies = [
   { name: "Git", category: "DevOps" },
   { name: "GitHub", category: "DevOps" },
   { name: "Docker", category: "DevOps" },
+  { name: "CI/CD", category: "DevOps" },
   { name: "Oracle Cloud", category: "Cloud" },
+  { name: "Figma", category: "Ferramentas" },
+  { name: "Postman", category: "Ferramentas" },
 ];
 
 const categoryColors: Record<string, string> = {
@@ -23,6 +26,7 @@ const categoryColors: Record<string, string> = {
   Database: "from-violet-500 to-purple-500",
   DevOps: "from-rose-500 to-pink-500",
   Cloud: "from-red-500 to-orange-500",
+  Ferramentas: "from-gray-500 to-gray-700",
 };
 
 const TechSection = () => {
@@ -38,7 +42,9 @@ const TechSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-mono text-primary/60 tracking-[0.3em] uppercase mb-3">Skills</p>
+          <p className="text-xs font-mono text-primary/60 tracking-[0.3em] uppercase mb-3">
+            Skills
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-14">
             Tech <span className="text-gradient">Stack</span>
           </h2>
@@ -54,7 +60,9 @@ const TechSection = () => {
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="group card-glass border-gradient rounded-2xl p-5 flex flex-col items-center gap-3 hover:scale-105 transition-all duration-300 cursor-default"
             >
-              <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${categoryColors[tech.category]} opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all`} />
+              <div
+                className={`w-3 h-3 rounded-full bg-gradient-to-r ${categoryColors[tech.category]} opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all`}
+              />
               <p className="font-semibold text-sm text-center text-muted-foreground group-hover:text-foreground transition-colors">
                 {tech.name}
               </p>
