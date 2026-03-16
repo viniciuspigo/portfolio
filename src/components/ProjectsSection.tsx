@@ -63,8 +63,8 @@ const projects = [
         },
       ],
       video: {
-        url: "https://www.w3schools.com/html/mov_bbb.mp4",
-        title: "Demonstração do Sistema de Agendamentos",
+        url: "", // "https://www.w3schools.com/html/mov_bbb.mp4"
+        title: "", // "Demonstração do Sistema de Agendamentos"
       },
     },
   },
