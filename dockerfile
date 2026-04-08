@@ -8,11 +8,8 @@ WORKDIR /app
 # Copia apenas package primeiro para aproveitar cache
 COPY package*.json ./
 
-# Atualiza npm (opcional)
-RUN npm install -g npm@latest
-
 # Instala dependências
-RUN npm install
+RUN npm ci
 
 # Copia o resto do projeto
 COPY . .
