@@ -18,7 +18,7 @@ const Index = () => {
       <div className="w-full max-w-5xl mx-auto h-px bg-border" />
       <TechSection />
       <footer className="py-12 text-center text-sm text-muted-foreground border-t border-border">
-        <p>© {actualYear} Vinicius Piras. Todos os direitos reservados.</p>
+        <p>© {actualYear} Vinicius Piras. Todoss os direitos reservados.</p>
       </footer>
     </div>
   );
