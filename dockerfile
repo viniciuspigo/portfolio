@@ -18,7 +18,7 @@ RUN npm install
 COPY . .
 
 # Build do Vite (gera /dist)
-RUN npm run build
+RUN npm run build || cat /root/.npm/_logs/*
 
 # Instala um servidor estático simples
 RUN npm install -g serve
