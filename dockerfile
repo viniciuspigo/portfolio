@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Atualiza npm (opcional)
-RUN npm install -g npm@latest
+# RUN npm install -g npm@latest
 
 # Instala dependências
 RUN npm install
