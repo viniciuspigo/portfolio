@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN npm install && npm install @rollup/rollup-linux-x64-gnu
+# força instalação correta incluindo optional deps
+RUN npm install --include=optional
 
 COPY . .
 
